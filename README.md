@@ -2,12 +2,11 @@
 
 ## Project Overview
 
-BuildMas is a full-stack web application designed to manage construction estimates and clients. It allows users (builders, contractors) to create and manage a client portfolio and generate detailed estimates for each, including labor and material costs. The application features an authentication and role system, with an administrator view to supervise platform activity.
+BuildMas is a full-stack web application designed to manage construction estimates and clients. It allows users (builders, contractors) to create and manage a client portfolio and generate detailed estimates for each, including labor and material costs.
 
-This repository contains two main versions of the application in separate branches:
+This repository contains main versions of the application:
 
-*   **`main`**: The production-ready version, which uses **Firebase Authentication** for real user management.
-*   **`mock`**: A local development version that uses a **mock authentication** system to streamline testing and development without needing cloud services.
+*   **`main`**: A local development version that uses a **mock authentication** system to streamline testing and development without needing cloud services.
 
 ---
 
@@ -25,8 +24,7 @@ This repository contains two main versions of the application in separate branch
     *   TypeScript
     *   Material-UI (MUI)
 *   **Authentication:**
-    *   Firebase Authentication (on the `main` branch)
-    *   Mock Authentication (on the `mock` branch)
+    *   Mock Authentication (on the `main` branch)
 *   **Containerization:**
     *   Docker
     *   Docker Compose
@@ -41,34 +39,33 @@ This repository contains two main versions of the application in separate branch
 *   Git installed.
 *   Node.js and npm (for local dependency management).
 
-### Development Version (`mock` branch)
+### Development Version (`main` branch)
 
 This version is highly recommended for local development as it requires no Firebase setup and starts quickly.
 
 1.  **Clone the Repository:**
     ```bash
     git clone <repository_url>
-    cd devbuildmas
+    cd buildmasweb
     ```
 
-2.  **Switch to the `mock` Branch:**
+2.  **Switch to the `main` Branch:**
     ```bash
-    git checkout mock
+    git checkout main
     ```
 
-3.  **Install Local Dependencies:**
-    *   This is necessary for your code editor to recognize packages and for Git management.
+3.  **Launch the Containers (recommended for local development with volumes):**
+    *   This command will build the Docker images and run the entire application stack (frontend, backend, and database).
+    ```bash
+    sudo docker compose up --build -d
+    ```
+
+4.  **Install Local Dependencies (optional):**
     ```bash
     npm install
     cd frontend && npm install
     cd ../backend && npm install
     cd ..
-    ```
-
-4.  **Launch the Containers:**
-    *   This command will build the Docker images and run the entire application stack (frontend, backend, and database).
-    ```bash
-    sudo docker compose up --build -d
     ```
 
 5.  **Access the Application:**
@@ -77,34 +74,6 @@ This version is highly recommended for local development as it requires no Fireb
 
 6.  **Log In (Mocked):**
     *   The login page will have default values. Simply click "Sign In" to access the application.
-
-### Production Version (`main` branch)
-
-This version uses real Firebase services and requires additional setup.
-
-1.  **Switch to the `main` Branch:**
-    ```bash
-    git checkout main
-    ```
-
-2.  **Firebase Setup:**
-    *   Create a project in the [Firebase Console](https://console.firebase.google.com/).
-    *   Enable **Authentication** with the **Email/Password** provider.
-    *   **Frontend:** Get your `firebaseConfig` object and paste it into the `frontend/src/firebase.ts` file.
-    *   **Backend:** Go to "Project settings" > "Service accounts", generate a new private key, and save the resulting JSON file as `backend/serviceAccountKey.json`.
-
-3.  **Environment Variable Setup:**
-    *   In the `backend/.env` file, ensure the `ADMIN_UID` variable is set to the UID of the user who will be the administrator.
-
-4.  **Launch the Containers:**
-    ```bash
-    sudo docker compose up --build -d
-    ```
-
-5.  **Access the Application:**
-    *   Navigate to `http://localhost` and register or sign in with a Firebase user.
-
----
 
 ## Relevant Implementation Notes
 
