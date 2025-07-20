@@ -46,11 +46,6 @@ The status of an estimate must be managed as follows, with visual color indicato
 *   **In Progress (Orange):** The system will automatically change the status to "In Progress" when the estimate has an assigned client, at least one material with a quantity, and a defined labor cost.
 *   **Completed (Green):** The user can manually change the status to "Completed", but only if the estimate is already in the "In Progress" state.
 
-### FR-05: Administrator Functionality
-*   **View All Clients:** The administrator can see a list of all clients registered on the platform, regardless of which user they belong to.
-*   **View All Estimates:** The administrator can see all estimates created on the platform.
-*   **View Platform Summary:** The administrator has access to a summary view with general statistics (e.g., total number of users, clients, estimates).
-
 ## 5. Non-Functional Requirements (NFR)
 
 *   **NFR-01: Mandatory Technology Stack:**
