@@ -59,7 +59,10 @@ This version is highly recommended for local development as it requires no Fireb
     ```bash
     sudo docker compose up --build -d
     ```
-
+    *   Migrating database tables.
+    ```bash
+    sudo docker compose exec backend npm run db:migrate
+    ```
 4.  **Install Local Dependencies (optional):**
     ```bash
     npm install
