@@ -19,7 +19,6 @@ Two main roles are defined in the system:
 ## 4. Functional Requirements (FR)
 
 ### FR-01: User Authentication Management
-*   **New User Registration:** The system must allow a person to register on the platform by providing their basic data.
 *   **Login:** Registered users must be able to access the system using their credentials.
 
 ### FR-02: Client Management (CRUD)
@@ -60,4 +59,4 @@ The status of an estimate must be managed as follows, with visual color indicato
     *   **Database:** PostgreSQL
     *   **ORM:** Drizzle ORM
 *   **NFR-02: Architecture:** The application must be a Single Page Application (SPA) with a REST API backend that manages business logic and data access.
-*   **NFR-03: Code:** The code must be clean, modular, and well-structured to facilitate maintenance and scalability.
+*   **NFR-03: Code:** The code is clean, modular, and well-structured to facilitate maintenance and scalability.
