@@ -9,7 +9,6 @@ The project's objective is to develop a full-stack Single Page Application (SPA)
 Two main roles are defined in the system:
 
 1.  **Registered User (Builder/Contractor):** The primary user of the application. They can manage their own client portfolio and the estimates associated with each client.
-2.  **Administrator:** Has a global view of the platform. They can supervise all clients and estimates in the system and access a general summary of platform activity (Draft).
 
 ## 3. Main System Entities
 
@@ -60,6 +59,5 @@ The status of an estimate must be managed as follows, with visual color indicato
     *   **Frontend:** React, TypeScript, Vite
     *   **Database:** PostgreSQL
     *   **ORM:** Drizzle ORM
-    *   **Authentication:** Firebase Authentication
 *   **NFR-02: Architecture:** The application must be a Single Page Application (SPA) with a REST API backend that manages business logic and data access.
 *   **NFR-03: Code:** The code must be clean, modular, and well-structured to facilitate maintenance and scalability.
