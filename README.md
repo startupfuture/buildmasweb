@@ -63,12 +63,17 @@ This version is highly recommended for local development as it requires no Fireb
     ```bash
     sudo docker compose exec backend npm run db:migrate
     ```
-4.  **Install Local Dependencies (optional):**
+4.  **Or Install Local Dependencies (optional):**
+    *   This command will install dependencies locally.
     ```bash
     npm install
     cd frontend && npm install
     cd ../backend && npm install
     cd ..
+    ```
+    * And the create database and tables
+    ```bash
+    npm run db:migrate
     ```
 
 5.  **Access the Application:**
