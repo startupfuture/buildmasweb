@@ -42,8 +42,8 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   const { title, description, laborCost, materialsTotal, totalCost, clientId, materials: materialsData } = req.body;
   
-  if (!title || !clientId) {
-    return res.status(400).send('Title and clientId are required');
+  if (!title) {
+    return res.status(400).send('Title is required');
   }
 
   const status = calculateStatus({ laborCost, materialsTotal, clientId });
@@ -74,22 +74,33 @@ router.post('/', async (req, res) => {
 // PUT (update) an estimate with materials
 router.put('/:id', async (req, res) => {
   const estimateId = parseInt(req.params.id);
-  const { title, description, laborCost, materialsTotal, totalCost, status, clientId, materials: materialsData } = req.body;
+
+  const existingEstimate = await db.select().from(estimates).where(eq(estimates.id, estimateId));
+  if (existingEstimate.length > 0 && existingEstimate[0].status === 'completed') {
+    return res.status(403).send('Cannot modify a completed estimate.');
+  }
+
+  const { title, description, laborCost, materialsTotal, totalCost, status: statusFromRequest, clientId, materials: materialsData } = req.body;
+  const status = statusFromRequest || calculateStatus({ laborCost, materialsTotal, clientId });
 
   try {
     const updatedEstimate = await db.transaction(async (tx) => {
-      // Delete old materials
-      await tx.delete(materials).where(eq(materials.estimateId, estimateId));
+      // If materials data is provided, update materials.
+      // Otherwise, leave them untouched.
+      if (materialsData) {
+        // Delete old materials
+        await tx.delete(materials).where(eq(materials.estimateId, estimateId));
 
-      // Insert new materials
-      if (materialsData && materialsData.length > 0) {
-        const materialsToInsert = materialsData.map((m: any) => ({
-          name: m.name,
-          quantity: m.quantity,
-          unitPrice: m.unitPrice,
-          estimateId: estimateId
-        }));
-        await tx.insert(materials).values(materialsToInsert);
+        // Insert new materials
+        if (materialsData.length > 0) {
+          const materialsToInsert = materialsData.map((m: any) => ({
+            name: m.name,
+            quantity: m.quantity,
+            unitPrice: m.unitPrice,
+            estimateId: estimateId
+          }));
+          await tx.insert(materials).values(materialsToInsert);
+        }
       }
 
       // Update the estimate itself

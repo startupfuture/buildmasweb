@@ -20,7 +20,7 @@ export const estimates = pgTable('estimates', {
   materialsTotal: integer('materials_total'),
   totalCost: integer('total_cost'),
   status: text('status').default('initiated'),
-  clientId: integer('client_id').references(() => clients.id),
+  clientId: integer('client_id'),
   createdAt: timestamp('created_at').defaultNow(),
 });
 

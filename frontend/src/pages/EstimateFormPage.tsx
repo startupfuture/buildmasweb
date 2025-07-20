@@ -8,7 +8,8 @@ import { Typography, Paper, Container } from '@mui/material';
 const EstimateFormPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [initialData, setInitialData] = useState<(CreateEstimateData & { materials: Material[] }) | null>(null);
+  const [initialData, setInitialData] = useState<(CreateEstimateData & { status?: string; materials: Material[] }) | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const isEditMode = Boolean(id);
 
@@ -16,7 +17,10 @@ const EstimateFormPage: React.FC = () => {
     if (isEditMode && id) {
       getEstimate(parseInt(id)).then(response => {
         setInitialData(response.data);
+        setLoading(false);
       });
+    } else {
+      setLoading(false);
     }
   }, [id, isEditMode]);
 
@@ -36,7 +40,11 @@ const EstimateFormPage: React.FC = () => {
         <Typography variant="h4" component="h1" gutterBottom>
           {isEditMode ? 'Edit Estimate' : 'Create Estimate'}
         </Typography>
-        <EstimateForm onSubmit={handleSubmit} initialData={initialData} />
+        {loading ? (
+          <Typography>Loading...</Typography>
+        ) : (
+          <EstimateForm onSubmit={handleSubmit} initialData={initialData} />
+        )}
       </Paper>
     </Container>
   );

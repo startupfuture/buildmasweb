@@ -37,7 +37,7 @@ export interface CreateEstimateData {
   materialsTotal?: number;
   totalCost?: number;
   status?: 'initiated' | 'in progress' | 'completed';
-  clientId: number;
+  clientId?: number;
 }
 
 // The data required to update an estimate

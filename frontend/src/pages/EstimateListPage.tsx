@@ -11,10 +11,17 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const statusColors: { [key: string]: 'warning' | 'info' | 'success' } = {
-  initiated: 'warning',
-  'in progress': 'info',
-  completed: 'success',
+const getStatusStyle = (status: string) => {
+  switch (status) {
+    case 'initiated':
+      return { backgroundColor: 'yellow', color: 'black' };
+    case 'in progress':
+      return { backgroundColor: 'orange', color: 'white' };
+    case 'completed':
+      return { backgroundColor: 'green', color: 'white' };
+    default:
+      return {};
+  }
 };
 
 const EstimateListPage: React.FC = () => {
@@ -65,18 +72,18 @@ const EstimateListPage: React.FC = () => {
                 <TableCell>{estimate.clientId}</TableCell>
                 <TableCell>${estimate.totalCost?.toLocaleString()}</TableCell>
                 <TableCell>
-                  <Chip label={estimate.status} color={statusColors[estimate.status]} size="small" />
+                  <Chip label={estimate.status} style={getStatusStyle(estimate.status)} size="small" />
                 </TableCell>
                 <TableCell align="right">
                   <Button 
                     variant="outlined" 
                     size="small"
                     startIcon={<CheckCircleIcon />}
-                    disabled={estimate.status !== 'in progress'}
+                    disabled={!estimate.clientId || estimate.status !== 'in progress'}
                     onClick={() => handleComplete(estimate)}
                     sx={{ mr: 1 }}
                   >
-                    Complete
+                    {estimate.clientId ? 'Complete' : 'TO BE ASSIGN'}
                   </Button>
                   <IconButton component={RouterLink} to={`/estimates/edit/${estimate.id}`} color="primary">
                     <EditIcon />

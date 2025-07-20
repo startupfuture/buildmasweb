@@ -15,6 +15,13 @@
       "when": 1752827010293,
       "tag": "0001_low_alex_wilder",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753042001343,
+      "tag": "0002_perfect_vermin",
+      "breakpoints": true
     }
   ]
 }
