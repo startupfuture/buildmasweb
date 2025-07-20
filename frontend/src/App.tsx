@@ -7,10 +7,11 @@ import EstimateFormPage from './pages/EstimateFormPage';
 import LoginPage from './pages/LoginPage';
 import { AuthProvider, useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/ProtectedRoute';
-import { auth } from './firebase';
+
+
 
 function Navigation() {
-  const { currentUser } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   return (
     <AppBar position="static">
@@ -28,7 +29,7 @@ function Navigation() {
             <Link component={RouterLink} to="/estimates" color="inherit" sx={{ textDecoration: 'none' }}>
               Estimates
             </Link>
-            <Button color="inherit" onClick={() => auth.signOut()}>
+            <Button color="inherit" onClick={logout}>
               Logout
             </Button>
           </>

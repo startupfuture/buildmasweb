@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "dev": "npx ts-node-dev --respawn --transpile-only src/index.ts",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "npx tsx ./src/db/migrate.ts",
+    "db:migrate": "npx tsx -r ./dotenv-config.js ./src/db/migrate.ts",
     "build": "tsc"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.14",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
     "drizzle-orm": "^0.44.3",
     "express": "^5.1.0",
     "firebase-admin": "^13.4.0",

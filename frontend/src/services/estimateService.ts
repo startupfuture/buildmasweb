@@ -1,13 +1,10 @@
 import axios from 'axios';
-import { auth } from '../firebase';
+
 
 const API_URL = 'http://localhost:3001/api/estimates';
 
 const getAuthHeaders = async () => {
-  const user = auth.currentUser;
-  if (!user) throw new Error("User not authenticated");
-  const token = await user.getIdToken();
-  return { headers: { Authorization: `Bearer ${token}` } };
+  return { headers: { Authorization: `Bearer mock-token` } };
 };
 
 // Define the structure of an Estimate for type safety

@@ -3,7 +3,7 @@ import cors from 'cors';
 import clientsRouter from './routes/clients';
 import estimatesRouter from './routes/estimates';
 import usersRouter from './routes/users';
-import { authenticate } from './middleware/authenticate';
+import { mockAuth as authenticate } from './middleware/mockAuth';
 
 const app = express();
 const port = process.env.PORT || 3001;
