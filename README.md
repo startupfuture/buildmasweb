@@ -97,3 +97,6 @@ This version is highly recommended for local development as it requires no Fireb
 *   **Status Logic:** The status of an estimate (`initiated`, `in progress`, `completed`) is automatically calculated and assigned on the backend whenever it is created or updated, ensuring data consistency.
 *   **API Security:** The API routes are protected. The backend validates a token (real or mock) on every request to identify the user and ensure they can only access their own data.
 *   **Dockerized Environment:** The entire application is containerized, which guarantees a consistent development environment and simplifies deployment.
+
+## A Brief Video Explanation
+url: https://www.youtube.com/watch?v=sxMAAN22ykY
