@@ -71,7 +71,6 @@ This version is highly recommended for local development as it requires no Fireb
     cd ../backend && npm install
     cd ..
     ```
-        ```
     * Command to generate migration
     ```bash
     npm run db:generate

@@ -8,7 +8,8 @@
     "dev": "npx ts-node-dev --respawn --transpile-only src/index.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "npx tsx -r ./dotenv-config.js ./src/db/migrate.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "npx jest"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,11 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.2",
+    "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/pg": "^8.15.4",
     "drizzle-kit": "^0.31.4",
