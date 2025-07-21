@@ -59,6 +59,10 @@ This version is highly recommended for local development as it requires no Fireb
     ```bash
     sudo docker compose up --build -d
     ```
+    *   Generating migration: this command is to generate the migration file.
+    ```bash
+    sudo docker compose exec backend npm run db:generate
+    ```
     *   Migrating database tables: this command is to create the database tables.
     ```bash
     sudo docker compose exec backend npm run db:migrate
